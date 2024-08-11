@@ -8,6 +8,7 @@ body {
     justify-content: center;
     align-items: center;
     height: 100vh;
+    font-size: 2em;
 }
 
 .calcContainer {
@@ -15,7 +16,11 @@ body {
 }
 
 .screen {
-    height: 50px;
+    height: 100px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    background-color: rgb(22, 22, 22);
+    color: white;
 }
 
 .operatorsContainer {
@@ -24,7 +29,7 @@ body {
 
 .operatorBtn {
     width: 100%;
-    height: 30px;
+    height: 50px;
     text-align: center;
     align-content: center;
 }
@@ -39,13 +44,22 @@ body {
 
 .numBtn {
     width: 100%;
-    height: 30px;
+    height: 50px;
+    text-align: center;
+    align-content: center;
 }
 
 .row {
     display: flex;
 }
 
+.zeroBtn {
+    border-bottom-left-radius: 20px;
+}
+
 .equalBtn {
     width: 33%;
+    text-align: center;
+    align-content: center;
+    border-bottom-right-radius: 20px;
 }
