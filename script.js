@@ -20,6 +20,11 @@ const multiply = document.querySelector(".multiplyBtn");
 const divide = document.querySelector(".divideBtn");
 const equal = document.querySelector(".equalBtn");
 
+let primaryNum = "";
+let secondaryNum = "";
+let operator = null;
+const displayValue = "";
+
 
 //Operator Functions
 const addition = function (a, b) {
@@ -38,30 +43,19 @@ const division = function (a, b) {
     return a / b
 };
 
-//Event listeners - numbers
-one.addEventListener("click", () => {
-    let number = screen.textContent = "1";
-    screen.append(number)
-})
+const operate = function (operator, num1, num2) {
+    switch (operator) {
+        case "+":
+            return addition(num1, num2);
+        case "-":
+            return subtraction(num1, num2);
+        case "*":
+            return multiplication(num1, num2);
+        case "/":
+            return division(num1, num2);
+        default:
+            return null;
+    }
+};
 
-two.addEventListener("click", () => {
-    screen.textContent = "2";
-})
 
-//Event listeners - operators
-plus.addEventListener("click", () => {
-    screen.textContent = "+";
-})
-minus.addEventListener("click", () => {
-    screen.textContent = "-";
-})
-multiply.addEventListener("click", () => {
-    screen.textContent = "x";
-})
-divide.addEventListener("click", () => {
-    screen.textContent = "/";
-})
-
-// when numbers clicked to appear on screen
-// when operator clicked to appear on screen
-// when equal clicked to compare conditions. if conditions met then execute operator function and display output.
