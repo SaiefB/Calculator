@@ -1,15 +1,6 @@
 // Variables
 const screen = document.querySelector(".screen");
-const zero = document.querySelector(".zeroBtn");
-const one = document.querySelector(".oneBtn");
-const two = document.querySelector(".twoBtn");
-const three = document.querySelector(".threeBtn");
-const four = document.querySelector(".fourBtn");
-const five = document.querySelector(".fiveBtn");
-const six = document.querySelector(".sixBtn");
-const seven = document.querySelector(".sevenBtn");
-const eight = document.querySelector(".eightBtn");
-const nine = document.querySelector(".nineBtn");
+const numberButtons = document.querySelectorAll(".numBtn");
 
 const decimal = document.querySelector(".decimalBtn");
 const clear = document.querySelector(".clearBtn");
@@ -62,7 +53,7 @@ const operate = function (operator, num1, num2) {
 
 // function to append numbers to the screen
 const appendNumber = function (number) {
-    if (screen.textContent = "") {
+    if (screen.textContent === "0" || screen.textContent === "") {
         screen.textContent = number;
     } else {
         screen.textContent += number;
@@ -70,3 +61,9 @@ const appendNumber = function (number) {
 }
 
 // Number buttons Event listener
+numberButtons.forEach(button => {
+    button.addEventListener("click", () => {
+        const number = button.textContent;
+        appendNumber(number);
+    });
+});
