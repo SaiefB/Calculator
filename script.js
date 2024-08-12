@@ -43,6 +43,7 @@ const division = function (a, b) {
     return a / b
 };
 
+// function for when the equal is set up
 const operate = function (operator, num1, num2) {
     switch (operator) {
         case "+":
@@ -59,3 +60,13 @@ const operate = function (operator, num1, num2) {
 };
 
 
+// function to append numbers to the screen
+const appendNumber = function (number) {
+    if (screen.textContent = "") {
+        screen.textContent = number;
+    } else {
+        screen.textContent += number;
+    }
+}
+
+// Number buttons Event listener
