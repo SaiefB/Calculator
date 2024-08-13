@@ -18,25 +18,28 @@ let operator = null;
 let isSecondNumber = false;
 let storedOperator = null;
 
+
+
 //Operator Functions
 const addition = function (a, b) {
     return a + b
 };
-
 const subtraction = function (a, b) {
     return a - b
 };
-
 const multiplication = function (a, b) {
     return a * b
 };
-
 const division = function (a, b) {
     return a / b
 };
 
+
+
 // function for when the equal is set up
 const operate = function (operator, num1, num2) {
+    num1 = parseFloat(num1);
+    num2 = parseFloat(num2);
     switch (operator) {
         case "+":
             return addition(num1, num2);
@@ -51,14 +54,31 @@ const operate = function (operator, num1, num2) {
     }
 };
 
+
+
 // function to append numbers to the screen
 const appendNumber = function (number) {
+
+    // If the second number is being input, clear the screen
+    if (isSecondNumber && (screen.textContent === "+" || screen.textContent === "")) {
+        screen.textContent = "";
+    } else if (isSecondNumber && (screen.textContent === "-" || screen.textContent === "")) {
+        screen.textContent = "";
+    } else if (isSecondNumber && (screen.textContent === "x" || screen.textContent === "")) {
+        screen.textContent = "";
+    } else if (isSecondNumber && (screen.textContent === "/" || screen.textContent === "")) {
+        screen.textContent = "";
+    }
+
+    // Display the current number
     if (screen.textContent === "0" || screen.textContent === "") {
         screen.textContent = number;
     } else {
         screen.textContent += number;
     };
-    if (isSecondNumber === false) {
+
+    // Append the number to the appropriate variable
+    if (!isSecondNumber) {
         primaryNum += number
     } else {
         secondaryNum += number
@@ -66,6 +86,8 @@ const appendNumber = function (number) {
     console.log("primaryNum: ",primaryNum)
     console.log("secondaryNum: ",secondaryNum)
 }
+
+
 
 
 // Number buttons Event listener
@@ -77,35 +99,78 @@ numberButtons.forEach(button => {
     });
 });
 
+
+
 // Operator buttons Event Listeners
 plus.addEventListener("click", () => {
     storedOperator = "+";
     console.log("Operator: ", storedOperator)
     isSecondNumber = true;
     console.log(isSecondNumber)
+    screen.textContent = "+";
 })
+minus.addEventListener("click", () => {
+    storedOperator = "-";
+    console.log("Operator: ", storedOperator)
+    isSecondNumber = true;
+    console.log(isSecondNumber)
+    screen.textContent = "-";
+})
+divide.addEventListener("click", () => {
+    storedOperator = "/";
+    console.log("Operator: ", storedOperator)
+    isSecondNumber = true;
+    console.log(isSecondNumber)
+    screen.textContent = "/";
+})
+multiply.addEventListener("click", () => {
+    storedOperator = "*";
+    console.log("Operator: ", storedOperator)
+    isSecondNumber = true;
+    console.log(isSecondNumber)
+    screen.textContent = "x";
+})
+
+
 
 //clear screen function
 clear.addEventListener("click", () => {
     screen.textContent = "";
     primaryNum = "";
     secondaryNum = "";
+    storedOperator = null;
+    isSecondNumber = false;
     console.log("primaryNum: ",primaryNum)
     console.log("secondaryNum: ",secondaryNum)
 })
 
+
+
 // Decimal Button function
 decimal.addEventListener("click", () => {
-    if (screen.textContent === "0" || screen.textContent === "") {
-        screen.textContent = `0.`;
-    } else {
-        screen.textContent += `${number}.`
+    if (!screen.textContent.includes(".")) {
+        screen.textContent += ".";
     }
-})
+});
+
+
 
 // Equal function
 equal.addEventListener("click", () => {
+    if (primaryNum === "" && operator === null && secondaryNum === "") {
+    screen.textContent = "ERROR"
+    } else {
+
+    
     let result = operate(storedOperator, primaryNum, secondaryNum)
+    screen.textContent = result;
     console.log(result)
+    primaryNum = result;
+    secondaryNum = "";
+    isSecondNumber = false;
+    
+    
+    }
+    
 })
 
