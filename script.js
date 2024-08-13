@@ -14,8 +14,9 @@ const equal = document.querySelector(".equalBtn");
 let primaryNum = "";
 let secondaryNum = "";
 let operator = null;
-const displayValue = "";
 
+let isSecondNumber = false;
+let storedOperator = null;
 
 //Operator Functions
 const addition = function (a, b) {
@@ -50,20 +51,61 @@ const operate = function (operator, num1, num2) {
     }
 };
 
-
 // function to append numbers to the screen
 const appendNumber = function (number) {
     if (screen.textContent === "0" || screen.textContent === "") {
         screen.textContent = number;
     } else {
         screen.textContent += number;
+    };
+    if (isSecondNumber === false) {
+        primaryNum += number
+    } else {
+        secondaryNum += number
     }
+    console.log("primaryNum: ",primaryNum)
+    console.log("secondaryNum: ",secondaryNum)
 }
+
 
 // Number buttons Event listener
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
         const number = button.textContent;
         appendNumber(number);
+
     });
 });
+
+// Operator buttons Event Listeners
+plus.addEventListener("click", () => {
+    storedOperator = "+";
+    console.log("Operator: ", storedOperator)
+    isSecondNumber = true;
+    console.log(isSecondNumber)
+})
+
+//clear screen function
+clear.addEventListener("click", () => {
+    screen.textContent = "";
+    primaryNum = "";
+    secondaryNum = "";
+    console.log("primaryNum: ",primaryNum)
+    console.log("secondaryNum: ",secondaryNum)
+})
+
+// Decimal Button function
+decimal.addEventListener("click", () => {
+    if (screen.textContent === "0" || screen.textContent === "") {
+        screen.textContent = `0.`;
+    } else {
+        screen.textContent += `${number}.`
+    }
+})
+
+// Equal function
+equal.addEventListener("click", () => {
+    let result = operate(storedOperator, primaryNum, secondaryNum)
+    console.log(result)
+})
+
