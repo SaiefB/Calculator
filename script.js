@@ -103,11 +103,11 @@ numberButtons.forEach(button => {
 
 // Operator buttons Event Listeners
 plus.addEventListener("click", () => {
+    screen.textContent = "";
     storedOperator = "+";
     console.log("Operator: ", storedOperator)
     isSecondNumber = true;
     console.log(isSecondNumber)
-    screen.textContent = "+";
 })
 minus.addEventListener("click", () => {
     storedOperator = "-";
