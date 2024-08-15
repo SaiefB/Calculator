@@ -94,12 +94,14 @@ const appendNumber = function (number) {
 numberButtons.forEach(button => {
     button.addEventListener("click", () => {
         const number = button.textContent;
+        console.log("number: ", number);
         if (secondaryNum === "") {
             screen.textContent = "";
             appendNumber(number);
         } else {
-            
+            screen.textContent = ""
             appendNumber(number)
+            console.log("number: ", number);
         }
     });
 });
@@ -125,27 +127,59 @@ plus.addEventListener("click", () => {
         console.log("isSecondNumber: ", isSecondNumber)
     }
 })
-
 minus.addEventListener("click", () => {
-    storedOperator = "-";
-    console.log("Operator: ", storedOperator)
-    isSecondNumber = true;
-    console.log(isSecondNumber)
-    screen.textContent = "-";
-})
-divide.addEventListener("click", () => {
-    storedOperator = "/";
-    console.log("Operator: ", storedOperator)
-    isSecondNumber = true;
-    console.log(isSecondNumber)
-    screen.textContent = "/";
+    if (isSecondNumber && secondaryNum !== "") {
+        console.log("---if is initiated---")
+        let result = operate(storedOperator, primaryNum, secondaryNum);
+        console.log("let result: ", result)
+        screen.textContent = result;
+        primaryNum = result;
+        console.log("primaryNum: ", primaryNum)
+        secondaryNum = "";
+        console.log("secondaryNum: ", secondaryNum)
+    } else {
+        screen.textContent = "";
+        storedOperator = "-";
+        console.log("Operator: ", storedOperator)
+        isSecondNumber = true;
+        console.log("isSecondNumber: ", isSecondNumber)
+    }
 })
 multiply.addEventListener("click", () => {
-    storedOperator = "*";
-    console.log("Operator: ", storedOperator)
-    isSecondNumber = true;
-    console.log(isSecondNumber)
-    screen.textContent = "x";
+    if (isSecondNumber && secondaryNum !== "") {
+        console.log("---if is initiated---")
+        let result = operate(storedOperator, primaryNum, secondaryNum);
+        console.log("let result: ", result)
+        screen.textContent = result;
+        primaryNum = result;
+        console.log("primaryNum: ", primaryNum)
+        secondaryNum = "";
+        console.log("secondaryNum: ", secondaryNum)
+    } else {
+        screen.textContent = "";
+        storedOperator = "*";
+        console.log("Operator: ", storedOperator)
+        isSecondNumber = true;
+        console.log("isSecondNumber: ", isSecondNumber)
+    }
+})
+divide.addEventListener("click", () => {
+    if (isSecondNumber && secondaryNum !== "") {
+        console.log("---if is initiated---")
+        let result = operate(storedOperator, primaryNum, secondaryNum);
+        console.log("let result: ", result)
+        screen.textContent = result;
+        primaryNum = result;
+        console.log("primaryNum: ", primaryNum)
+        secondaryNum = "";
+        console.log("secondaryNum: ", secondaryNum)
+    } else {
+        screen.textContent = "";
+        storedOperator = "/";
+        console.log("Operator: ", storedOperator)
+        isSecondNumber = true;
+        console.log("isSecondNumber: ", isSecondNumber)
+    }
 })
 
 
